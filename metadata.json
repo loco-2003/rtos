@@ -1,0 +1,5 @@
+{
+  "name": "RTOS Exam System",
+  "description": "A real-time online examination system simulation demonstrating synchronized question release, auto-submission, and cheating detection using EDF scheduling.",
+  "requestFramePermissions": []
+}
