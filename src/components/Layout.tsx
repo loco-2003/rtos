@@ -10,10 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="flex h-screen bg-[#F5F5F5] text-[#141414] font-sans overflow-hidden">
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-black/5 flex items-center justify-between px-4 z-50">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-black rounded-sm" />
-          <h1 className="font-mono text-lg font-bold tracking-tight">RTOS EXAM</h1>
-        </div>
+        <BrandLogo />
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 text-black/60 hover:bg-black/5 rounded-lg">
           {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -29,15 +26,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Sidebar */}
       <aside className={cn(
-        "fixed md:static inset-y-0 left-0 w-64 border-r border-black/5 bg-white flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-50 transition-transform duration-300 ease-in-out md:transform-none",
-        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        "fixed md:static inset-y-0 left-0 w-64 border-r border-black/5 bg-white flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-50 transition-transform duration-300 ease-in-out",
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}>
         <div className="p-6 border-b border-black/5 hidden md:block">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-3 h-3 bg-black rounded-sm" />
-            <h1 className="font-mono text-lg font-bold tracking-tight">RTOS EXAM</h1>
-          </div>
-          <p className="text-[10px] text-black/40 font-mono uppercase tracking-wider pl-5">v1.0.0 | EDF Scheduler</p>
+          <BrandLogo />
+          <p className="text-[10px] text-black/40 font-mono uppercase tracking-wider mt-2 pl-1">v1.0.0 | EDF Scheduler</p>
         </div>
         
         <nav className="flex-1 p-4 space-y-1 mt-16 md:mt-0">
@@ -71,6 +65,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-1 overflow-auto bg-[#F5F5F5] pt-16 md:pt-0">
         {children}
       </main>
+    </div>
+  );
+}
+
+function BrandLogo({ className }: { className?: string }) {
+  return (
+    <div className={cn("flex items-center gap-3", className)}>
+      <div className="flex items-center justify-center w-8 h-8 bg-black text-white rounded-lg shadow-sm shadow-black/20">
+        <Cpu size={18} strokeWidth={3} />
+      </div>
+      <h1 className="font-mono text-lg font-bold tracking-tight leading-none">RTOS EXAM</h1>
     </div>
   );
 }
