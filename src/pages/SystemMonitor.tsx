@@ -50,44 +50,46 @@ export default function SystemMonitor() {
   const visibleSchedule = schedule.filter(s => s.endTime > startTime);
 
   return (
-    <div className="p-6 h-full flex flex-col bg-[#f8f9fa]">
-      <header className="mb-6 flex justify-between items-end">
+    <div className="p-4 md:p-6 h-full flex flex-col bg-[#f8f9fa]">
+      <header className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
-          <h1 className="text-2xl font-bold font-mono uppercase tracking-tight text-black/80">System Monitor</h1>
-          <p className="text-sm text-black/50 font-mono">Earliest Deadline First (EDF) Scheduler</p>
+          <h1 className="text-xl md:text-2xl font-bold font-mono uppercase tracking-tight text-black/80">System Monitor</h1>
+          <p className="text-xs md:text-sm text-black/50 font-mono">Earliest Deadline First (EDF) Scheduler</p>
         </div>
         
-        {/* Simulation Controls */}
-        <div className="flex items-center gap-4 bg-white p-2 rounded-lg border border-black/5 shadow-sm">
-           <button 
-             onClick={() => setIsPlaying(!isPlaying)}
-             className="w-8 h-8 flex items-center justify-center rounded hover:bg-black/5 text-black/70 transition-colors"
-             title={isPlaying ? "Pause Simulation" : "Resume Simulation"}
-           >
-             {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
-           </button>
-           
-           <div className="h-4 w-px bg-black/10" />
-           
-           <div className="flex items-center gap-1">
-             {[0.1, 0.2, 0.5, 1.0].map((s) => (
-               <button
-                 key={s}
-                 onClick={() => setSpeed(s)}
-                 className={cn(
-                   "px-2 py-1 text-[10px] font-mono font-bold rounded transition-colors",
-                   speed === s ? "bg-black text-white" : "text-black/40 hover:bg-black/5"
-                 )}
-               >
-                 {s}x
-               </button>
-             ))}
-           </div>
-        </div>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
+          {/* Simulation Controls */}
+          <div className="flex items-center gap-4 bg-white p-2 rounded-lg border border-black/5 shadow-sm w-full sm:w-auto justify-between sm:justify-start">
+             <button 
+               onClick={() => setIsPlaying(!isPlaying)}
+               className="w-8 h-8 flex items-center justify-center rounded hover:bg-black/5 text-black/70 transition-colors"
+               title={isPlaying ? "Pause Simulation" : "Resume Simulation"}
+             >
+               {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+             </button>
+             
+             <div className="h-4 w-px bg-black/10" />
+             
+             <div className="flex items-center gap-1">
+               {[0.1, 0.2, 0.5, 1.0].map((s) => (
+                 <button
+                   key={s}
+                   onClick={() => setSpeed(s)}
+                   className={cn(
+                     "px-2 py-1 text-[10px] font-mono font-bold rounded transition-colors",
+                     speed === s ? "bg-black text-white" : "text-black/40 hover:bg-black/5"
+                   )}
+                 >
+                   {s}x
+                 </button>
+               ))}
+             </div>
+          </div>
 
-        <div className="flex gap-4">
-          <Metric label="System Time" value={`${time.toFixed(1)}s`} />
-          <Metric label="CPU Util" value={`${cpuUtilization.toFixed(1)}%`} />
+          <div className="flex gap-2 w-full sm:w-auto">
+            <Metric label="System Time" value={`${time.toFixed(1)}s`} className="flex-1 sm:flex-none" />
+            <Metric label="CPU Util" value={`${cpuUtilization.toFixed(1)}%`} className="flex-1 sm:flex-none" />
+          </div>
         </div>
       </header>
 
@@ -358,9 +360,9 @@ export default function SystemMonitor() {
   );
 }
 
-function Metric({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
+function Metric({ label, value, highlight = false, className }: { label: string; value: string; highlight?: boolean; className?: string }) {
   return (
-    <div className={`px-4 py-2 rounded border ${highlight ? 'bg-black text-white border-black' : 'bg-white border-black/10'}`}>
+    <div className={cn(`px-4 py-2 rounded border ${highlight ? 'bg-black text-white border-black' : 'bg-white border-black/10'}`, className)}>
       <div className={`text-[10px] font-mono uppercase ${highlight ? 'text-white/60' : 'text-black/40'}`}>{label}</div>
       <div className="font-mono font-bold text-lg leading-none mt-1">{value}</div>
     </div>

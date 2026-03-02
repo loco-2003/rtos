@@ -9,10 +9,10 @@ const STUDENTS = [
 
 export default function ProctoringUnit() {
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold font-mono uppercase tracking-tight mb-2">Proctoring Unit</h1>
-        <p className="text-black/60">Live monitoring of student clients via AI detection module.</p>
+    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+      <header className="mb-6 md:mb-8">
+        <h1 className="text-xl md:text-2xl font-bold font-mono uppercase tracking-tight mb-2">Proctoring Unit</h1>
+        <p className="text-sm md:text-base text-black/60">Live monitoring of student clients via AI detection module.</p>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -63,13 +63,15 @@ export default function ExamClient() {
   return (
     <div className="h-full flex flex-col bg-white">
       {/* Header */}
-      <header className="h-16 border-b border-black/10 flex items-center justify-between px-6 bg-[#fcfcfc]">
-        <div className="flex items-center gap-4">
-          <h1 className="font-bold text-lg">Final Examination: RTOS</h1>
-          <span className="px-2 py-0.5 bg-black/5 text-xs font-mono rounded text-black/60">ECT426</span>
+      <header className="h-auto md:h-16 border-b border-black/10 flex flex-col md:flex-row items-start md:items-center justify-between px-4 md:px-6 py-4 md:py-0 bg-[#fcfcfc] gap-4 md:gap-0">
+        <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+          <div className="flex items-center gap-4">
+            <h1 className="font-bold text-base md:text-lg">Final Examination: RTOS</h1>
+            <span className="px-2 py-0.5 bg-black/5 text-xs font-mono rounded text-black/60">ECT426</span>
+          </div>
         </div>
         
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6 w-full md:w-auto justify-between md:justify-end">
           <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${warnings > 0 ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
             <Eye size={16} />
             <span className="text-xs font-medium">
@@ -77,7 +79,7 @@ export default function ExamClient() {
             </span>
           </div>
           
-          <div className="flex items-center gap-2 font-mono text-xl font-bold tabular-nums">
+          <div className="flex items-center gap-2 font-mono text-lg md:text-xl font-bold tabular-nums">
             <Clock size={20} className="text-black/40" />
             {formatTime(timeLeft)}
           </div>
@@ -85,7 +87,7 @@ export default function ExamClient() {
       </header>
 
       {/* Main Exam Area */}
-      <div className="flex-1 overflow-auto p-8 max-w-4xl mx-auto w-full">
+      <div className="flex-1 overflow-auto p-4 md:p-8 max-w-4xl mx-auto w-full">
         {!isTabActive && (
           <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-lg flex items-center gap-3 text-red-700">
             <AlertTriangle size={20} />
